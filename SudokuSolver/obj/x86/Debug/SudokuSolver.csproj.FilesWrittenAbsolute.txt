@@ -1,0 +1,5 @@
+/Users/butlermike/Develop/GitHub/SudokuSolver/SudokuSolver/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/Users/butlermike/Develop/GitHub/SudokuSolver/SudokuSolver/bin/Debug/SudokuSolver.exe.mdb
+/Users/butlermike/Develop/GitHub/SudokuSolver/SudokuSolver/bin/Debug/SudokuSolver.exe
+/Users/butlermike/Develop/GitHub/SudokuSolver/SudokuSolver/obj/x86/Debug/SudokuSolver.exe
+/Users/butlermike/Develop/GitHub/SudokuSolver/SudokuSolver/obj/x86/Debug/SudokuSolver.exe.mdb
