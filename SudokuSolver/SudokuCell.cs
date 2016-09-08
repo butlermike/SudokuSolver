@@ -37,6 +37,11 @@ namespace SudokuSolver
 				possibleValues = value;
 			}
 		}
+		public void SetValue(int value)
+		{
+			this.possibleValues.Clear();
+			this.possibleValues.Add(value);
+		}
 
 		public List<Cell> Observers
 		{
