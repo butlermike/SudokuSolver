@@ -3,15 +3,22 @@ namespace SudokuSolver
 {
 	public abstract class GameGrid
 	{
-		int rows;
-		int columns;
-		Cell[,] cells;
+		private int rows;
+		private int columns;
+		private Cell[,] cells;
 
 		public GameGrid()
 		{
 		}
 
-		public int Rows
+		public GameGrid(int rowval, int colval)
+		{
+			this.rows = rowval;
+			this.columns = colval;
+			this.cells = new Cell[this.rows, this.columns];
+		}
+
+		public virtual int Rows
 		{
 			get
 			{
@@ -24,7 +31,7 @@ namespace SudokuSolver
 			}
 		}
 
-		public int Columns
+		public virtual int Columns
 		{
 			get
 			{
@@ -37,16 +44,11 @@ namespace SudokuSolver
 			}
 		}
 
-		public Cell[,] Cells
+		public virtual Cell[,] Cells
 		{
 			get
 			{
 				return cells;
-			}
-
-			set
-			{
-				cells = value;
 			}
 		}
 		public void setCell(int row, int column, Cell cell)
@@ -55,4 +57,3 @@ namespace SudokuSolver
 		}
 	}
 }
-

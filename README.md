@@ -1,3 +1,5 @@
+# This project is still under construction.
+
 # SudokuSolver
 Practicing Object Oriented coding by writing a Sudoku solving program
 

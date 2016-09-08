@@ -3,7 +3,8 @@ namespace SudokuSolver
 {
 	public interface ISudokuEngine
 	{
-		SudokuGrid initializeGrid();
+		SudokuGrid initializeGrid(GameGrid grid);
+		void displaySudokuGrid(SudokuGrid sgrid);
 	}
 }
 

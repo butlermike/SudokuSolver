@@ -8,11 +8,21 @@ namespace SudokuSolver
 		{
 			Console.WriteLine("Start...");
 
-			SudokuEngine engine = new SudokuEngine();
-			engine.GameGrid = new SudokuGrid();
-			engine.initializeGrid();
+			// A Sudoku grid is 9 by 9
+			int rowcount = 9;
+			int columncount = 9;
 
+			SudokuGrid theGrid = new SudokuGrid(rowcount, columncount);
+			SudokuEngine engine = new SudokuEngine(theGrid);
 
+			SudokuGrid gameGrid = engine.initializeGrid(theGrid);
+
+			engine.displaySudokuGrid(gameGrid);
+
+			var scell = (SudokuCell)gameGrid.Cells[0, 2];
+			//scell.PossibleValues = 4;
+
+			
 
 
 			Console.WriteLine("...Finish.");
