@@ -62,6 +62,18 @@ namespace SudokuSolver
 
 			engine.displaySudokuGrid(gameGrid);
 
+			for (int j = 0; j < 64; j += 1)
+			{
+				var solved = engine.processGrid(gameGrid);
+
+				engine.displaySudokuGrid(gameGrid);
+
+				if (solved == 0)
+				{
+					break;
+				}
+			}
+
 			Console.WriteLine("...Finish.");
 		}
 	}

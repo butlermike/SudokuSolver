@@ -37,6 +37,19 @@ namespace SudokuSolver
 				possibleValues = value;
 			}
 		}
+		public int Value()
+		{
+			int theValue=0;
+
+			if (possibleValues.Count < 2)
+			{
+				foreach (int value in possibleValues)
+				{
+					theValue = value;
+				}
+			}
+			return theValue;
+		}
 		public void SetValue(int value)
 		{
 			this.possibleValues.Clear();
