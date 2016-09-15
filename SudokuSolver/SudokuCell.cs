@@ -11,6 +11,7 @@ namespace SudokuSolver
 
 		public SudokuCell()
 		{
+			base.Id = DateTime.Now.Millisecond;
 			this.possibleValues = new List<int>();
 			this.possibleValues.Add(1);
 			this.possibleValues.Add(2);
@@ -100,27 +101,21 @@ namespace SudokuSolver
 			}
 		}
 
-		//public void registerObserver(SudokuCell sudokuCell)
-		//{
-		//	Observers.Add(sudokuCell);
-		//}
-
-		//public void removeObserver(SudokuCell sudokuCell)
-		//{
-		//	Observers.Remove(sudokuCell);
-		//}
-
-		//public void notifyObservers()
-		//{
-		//	foreach (var observer in Observers)
-		//	{
-		//		observer.update();
-		//	}
-		//}
-
 		public void update()
 		{
 			Console.WriteLine("Update!");
+			foreach (SudokuCell observer in Observers)
+			{
+				if (this.PossibleValues.Count < 2)
+				{
+					foreach (var value in this.PossibleValues)
+					{
+						observer.PossibleValues.Remove(value);
+					}
+
+					// Future enhancement: If I have figured out what my value is, I can remove myself from observing other cells.
+				}
+			}
 		}
 
 	}

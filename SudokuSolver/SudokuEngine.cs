@@ -37,6 +37,66 @@ namespace SudokuSolver
 					sCell.Quadrant = quadrantNumberWithRowColumn(i, j);
 				}
 			}
+
+			// Set the cell observers
+			for (var i = 0; i < sgrid.Rows; i += 1)
+			{
+				for (var j = 0; j < sgrid.Columns; j += 1)
+				{
+					SudokuCell sCell = (SudokuCell)sgrid.Cells[i, j];
+
+					for (var index1 = 0; index1 < sgrid.Rows; index1 += 1)
+					{
+						// Add the observers in this column (skipping myself as needed)
+						if (index1 != j)
+						{
+							sCell.registerObserver(sgrid.Cells[i, index1]);
+						}
+
+						// Add the observers in this row (skipping myself as needed)
+						if (index1 != i)
+						{
+							sCell.registerObserver(sgrid.Cells[index1, j]);
+						}
+					}
+				}
+			}
+
+			// Add the observers in this quadrant
+			// We can skip cells that already have our own row or column, they were already added.
+			// Until I come up with a better way, just gonna walk the cells and find those in my own quadrant
+			for (var qi = 0; qi < sgrid.Rows; qi += 1)
+			{
+				for (var qj = 0; qj < sgrid.Columns; qj += 1)
+				{
+					SudokuCell sCell = (SudokuCell)sgrid.Cells[qi, qj];
+
+					for (var qi1 = 0; qi1 < sgrid.Rows; qi1 += 1)
+					{
+						for (var qj1 = 0; qj1 < sgrid.Columns; qj1 += 1)
+						{
+							SudokuCell sCell1 = (SudokuCell)sgrid.Cells[qi1, qj1];
+
+							// Skip cells that are not in our quadrant
+							if (sCell.Quadrant != sCell1.Quadrant)
+							{
+								continue;
+							}
+
+							// Skip cells that have already been added as a row or column observer
+							if (qi == qi1)
+							{
+								continue;
+							}
+							if (qj == qj1)
+							{
+								continue;
+							}
+							sCell.registerObserver(sgrid.Cells[qi1, qj1]);
+						}
+					}
+				}
+			}
 			return sgrid;
 		}
 
@@ -103,6 +163,7 @@ namespace SudokuSolver
 		{
 			SudokuCell sCell = (SudokuCell)grid.Cells[row, column];
 			sCell.SetValue(value);
+			sCell.notifyObservers();
 		}
 
 		public int processGrid(SudokuGrid sgrid)
@@ -243,6 +304,28 @@ namespace SudokuSolver
 
 			Console.WriteLine();
 			Console.WriteLine();
+		}
+
+		public void displaySudokuGridPossibleValues(SudokuGrid sgrid)
+		{
+			Console.WriteLine();
+			Console.WriteLine();
+
+			for (int r = 0; r < sgrid.Rows; r++)
+			{
+				for (int c = 0; c < sgrid.Columns; c++)
+				{
+
+					var sCell = (SudokuCell)sgrid.Cells[r, c];
+					Console.Write("Possible Values [" + r + "," + c + "]");
+					foreach (var val in sCell.PossibleValues)
+					{
+						Console.Write(val + " ");
+					}
+					Console.WriteLine();
+				}
+				Console.WriteLine();
+			}
 		}
 	}
 }

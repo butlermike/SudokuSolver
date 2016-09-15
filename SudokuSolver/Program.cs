@@ -67,14 +67,18 @@ namespace SudokuSolver
 				var solved = engine.processGrid(gameGrid);
 
 				engine.displaySudokuGrid(gameGrid);
+				engine.displaySudokuGridPossibleValues(gameGrid);
 
 				if (solved == 0)
 				{
+					Console.WriteLine("Solved.");
 					break;
 				}
 			}
-
+			engine.displaySudokuGridPossibleValues(gameGrid);
+			Console.WriteLine("Wait here.");
 			Console.WriteLine("...Finish.");
+
 		}
 	}
 }
